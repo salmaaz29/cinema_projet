@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+<h1> Les utilisateurs </h1>
+<table>
+   <tbody>
+           <tr>
+            <th>Id</th>
+            <td>
+            <a href="{{path('app_pre_controller' , {'id': user.id })}}">   {{user.id}} </a>
+            </td>
+            </tr>
+            <tr>
+            <th>username</th>
+            <td>{{user.email}}</td>
+            </tr>
+            <tr>
+            <th>Mot de passe</th>
+            <td>{{user.password}}</td>
+            </tr>
+    
+    </tbody>
+
+</table>
+
+
+
+{% endblock %}
