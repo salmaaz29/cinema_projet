@@ -15,9 +15,7 @@ final class HomeController extends AbstractController
     #[Route('/home', name: 'app_pre_controller')]   // associe l url a la fct qui va etre executer --si j'envoie une requette /first je peut repondre par cette fct 
     public function index(UsersRepository $repository): Response
     {
-        return $this->render('homecontroller/index.html.twig', [
-            'utilisateurs' => $repository->findAll(),
-        ]);
+        return $this->render('homecontroller/home.html.twig');
     }
     #[Route('/affiche/{id<\d+>}', name: 'user_affiche')]   // associe l url a la fct qui va etre executer --si j'envoie une requette /first je peut repondre par cette fct 
     public function affiche(UsersRepository $user): Response

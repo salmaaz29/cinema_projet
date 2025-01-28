@@ -68,6 +68,17 @@ Encore
 
     // uncomment if you're having problems with a jQuery plugin
     //.autoProvidejQuery()
+
+    // Activer la gestion des fichiers CSS
+    .enableSassLoader()
+    .enablePostCssLoader()
+ // Ajouter Bootstrap CSS et JS
+ .addStyleEntry('bootstrap', './node_modules/bootstrap/dist/css/bootstrap.min.css')
+ .addEntry('bootstrap-js', './node_modules/bootstrap/dist/js/bootstrap.bundle.min.js')
+
+ 
+    // Activer la versioning des fichiers pour éviter le cache
+    .enableVersioning()
 ;
 
 module.exports = Encore.getWebpackConfig();
