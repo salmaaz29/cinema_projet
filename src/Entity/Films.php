@@ -48,7 +48,7 @@ class Films
         return $this->titre;
     }
 
-    public function setTitre(string $titre): static
+    public function setTitre(string $titre): self
     {
         $this->titre = $titre;
 
@@ -67,12 +67,12 @@ class Films
         return $this;
     }
 
-    public function getDate_sortie(): ?\DateTimeInterface
+    public function getDateSortie(): ?\DateTimeInterface
     {
         return $this->date_sortie;
     }
 
-    public function setDate(\DateTimeInterface $date_sortie): static
+    public function setDateSortie(\DateTimeInterface $date_sortie): static
     {
         $this->date_sortie = $date_sortie;
 

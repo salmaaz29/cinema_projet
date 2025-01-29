@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Choix de l'Espace - CinéVerse{% endblock %}
+
+{% block body %}
+<div class="container mt-5 text-center">
+    <h1>Bienvenue sur CinéVerse</h1>
+    <p class="lead">Veuillez choisir votre espace :</p>
+
+    <div class="row mt-7">
+        <div class="col-md-6">
+            <a href="   {{ path('app_login') }} " class="btn btn-danger btn-lg w-100">
+                <i class="fas fa-user-shield"></i> Espace Administrateur
+            </a>
+        </div>
+        <div class="col-md-6">
+            <a href="#" class="btn btn-primary btn-lg w-100">
+                <i class="fas fa-user"></i> Espace Utilisateur
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

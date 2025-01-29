@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container mt-5">
+    <h1 class="text-center">CineVerse</h1>
+    <p class="lead text-center">Bienvenue sur CinéVerse, votre plateforme dédiée à l'expérience cinématographique en ligne.</p>
+
+    <section class="mt-4">
+        <h2>Notre mission</h2>
+        <p>CinéVerse vous permet de découvrir les films en salles, d’acheter vos tickets en ligne et de télécharger vos billets facilement.</p>
+    </section>
+
+    <section class="mt-4">
+        <h2>Pourquoi nous choisir ?</h2>
+        <ul>
+            <li>Expérience fluide et intuitive</li>
+            <li>Réservation rapide et sécurisée</li>
+            <li>Accès aux avis des spectateurs</li>
+            <li>Offres et promotions exclusives</li>
+        </ul>
+    </section>
+
+    <section class="mt-4">
+        <h2>Contactez-nous</h2>
+        <p>Vous avez une question ? Retrouvez-nous sur nos réseaux sociaux ou contactez-nous via notre page de contact.</p>
+        <a href="#" class="btn btn-primary">Page de contact</a>
+    </section>
+</div>
+  {% include "__partials/_footer.html.twig" %}
+{% endblock %}

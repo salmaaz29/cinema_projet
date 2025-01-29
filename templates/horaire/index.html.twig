@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Horaires des Films - CinéVerse{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <h1 class="text-center">Horaires des Films</h1>
+    <p class="text-center lead">Consultez les horaires des séances et réservez votre place.</p>
+
+    {% for seance in seances %}
+        <div class="card mt-4">
+            <div class="card-body " >
+                <h2 class="card-title">{{ seance.film.titre }}</h2>
+                <h5 class="text-muted">Date et heure : {{ seance.dateHeure|date('d/m/Y H:i') }}</h5>
+                <p><strong>Prix :</strong> {{ seance.prix }} MAD</p>
+                <p><strong>Places disponibles :</strong> {{ seance.placesDisponibles }}</p>
+                <p><img src="{{ seance.film.afficheUrl }}" alt="Affiche du film"></p>
+                
+                {% if seance.placesDisponibles > 0 %}
+                    <a href="{{ path('finaliser_reservation', { 'id_seance': seance.id } )}}" class="btn btn-success">Réserver</a>
+                {% else %}
+                    <button class="btn btn-danger" disabled>Complet</button>
+                {% endif %}
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}

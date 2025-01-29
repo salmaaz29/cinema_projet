@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Erreur de Réservation - CinéVerse{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <h1 class="text-center text-danger">Désolé, cette séance est complète.</h1>
+    <p class="text-center">Il n'y a plus de places disponibles pour cette séance.</p>
+    <a href="{{ path('home') }}" class="btn btn-secondary btn-block">Retour à l'accueil</a>
+</div>
+{% endblock %}

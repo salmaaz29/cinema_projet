@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Réservation - CinéVerse{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <h1 class="text-center">Réservez votre place pour {{ seance.film.titre }}</h1>
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <img src="{{ seance.film.afficheUrl }}" class="card-img-top" alt="Affiche de {{ seance.film.titre }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ seance.film.titre }}</h5>
+                    <p><strong>Description :</strong> {{ seance.film.description }}</p>
+                    <p><strong>Date et Heure :</strong> {{ seance.dateHeure|date('d/m/Y H:i') }}</p>
+                    <p><strong>Places disponibles :</strong> {{ seance.placesDisponibles }}</p>
+                    <p><strong>Prix :</strong> {{ seance.prix }} MAD</p>
+
+                    {% if seance.placesDisponibles > 0 %}
+                        <form action="{{ path('finaliser_reservation', { 'id_seance': seance.id }) }}" method="POST">
+                            <button type="submit" class="btn btn-primary btn-block">Réserver maintenant</button>
+                        </form>
+                    {% else %}
+                        <button class="btn btn-danger btn-block" disabled>Complet</button>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

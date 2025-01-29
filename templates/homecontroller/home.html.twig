@@ -1,6 +1,32 @@
-{% extends 'homecontroller/base.html.twig' %}
+{% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Cineverse cinema</h1>
-    <p>binvenue au site de cinema cineverse </p>
+    <h1>Les Actualités</h1>
+<div class=" d-flex">
+    <div id="carouselExample" class="carousel slide " data-bs-ride="carousel">
+        <div class="carousel-inner">
+            {% for film in films %}
+                <div class="carousel-item {% if loop.first %}active{% endif %}">
+                    <img src="{{ asset(film.afficheUrl) }}" class="d-block w-100 img-fluid" style="max-height: 200px; max-width: 300px;" alt="{{ film.titre }}">
+                </div>
+            {% endfor %}
+        </div>
+        <!-- Boutons de navigation -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Précédent</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Suivant</span>
+        </button>
+    </div>
+</div>
+
+    <!-- Espace entre le carrousel et le footer -->
+    <div class="mt-5"></div> <!-- Ajoute un espace supplémentaire avant le footer -->
+
+    {% include "__partials/_footer.html.twig" %}
 {% endblock %}
+
+
