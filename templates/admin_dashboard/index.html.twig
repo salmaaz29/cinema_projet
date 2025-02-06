@@ -1,0 +1,148 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Admin Dashboard{% endblock %}
+
+{% block body %}
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color:rgb(184, 202, 219);
+            color: #212529;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            font-size: 2.8em;
+            margin-top: 50px;
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+
+        h2 {
+            color: #2980b9;
+            font-size: 2em;
+            margin-top: 50px;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        p {
+            text-align: center;
+            font-size: 1.2em;
+            margin-bottom: 50px;
+            color: #6c757d;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .admin-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 50px;
+        }
+
+        .admin-links li {
+            background: linear-gradient(135deg, #ffffff, #f8f9fa);
+            padding: 20px 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            width: 220px;
+            text-align: center;
+            list-style: none;
+        }
+
+        .admin-links li a {
+            text-decoration: none;
+            color: #3498db;
+            font-weight: 600;
+            font-size: 1.1em;
+            display: block;
+            transition: color 0.3s ease;
+        }
+
+        .admin-links li:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .admin-links li a:hover {
+            color: #2980b9;
+        }
+
+        .films-list {
+            background: linear-gradient(135deg, #ffffff, #f8f9fa);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin-top: 50px;
+        }
+
+        .films-list ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .films-list li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            font-size: 1.1em;
+            color: #333;
+            padding: 15px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .films-list li:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .films-list li span {
+            font-size: 1em;
+            color: #6c757d;
+        }
+
+        .films-list li span:first-child {
+            font-weight: 500;
+            color: #2c3e50;
+        }
+    </style>
+
+    <div class="container">
+        <h1>Bienvenue sur le tableau de bord de l'Admin</h1>
+        <p>Vous avez accès aux fonctionnalités administratives ici.</p>
+        
+        <ul class="admin-links">
+            <li><a href="{{ path('app_admin_actualite_index') }}">Gestion des actualités</a></li>
+            <li><a href="{{ path('app_admin_films_index') }}">Gestion des Films</a></li>
+            <li><a href="{{ path('app_admin_seances_index') }}">Gestion des Séances des films</a></li>
+        </ul>
+        
+        <h2>Films les plus demandés</h2>
+        <div class="films-list">
+            <ul>
+                {% for film in films %}
+                    <li>
+                        <span>{{ film.titre }}</span>
+                        <span>{{ film.ticket_count }} tickets réservés</span>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% endblock %}

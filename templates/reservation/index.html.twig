@@ -17,7 +17,7 @@
                     <p><strong>Prix :</strong> {{ seance.prix }} MAD</p>
 
                     {% if seance.placesDisponibles > 0 %}
-                        <form action="{{ path('finaliser_reservation', { 'id_seance': seance.id }) }}" method="POST">
+                        <form action="{{ path('reserver_ticket', { 'id_seance': seance.id }) }}" method="POST">
                             <button type="submit" class="btn btn-primary btn-block">Réserver maintenant</button>
                         </form>
                     {% else %}

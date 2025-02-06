@@ -1,5 +1,4 @@
 
-body {
-    
-    background-color: rgb(254, 254, 254);
+.custom-body {
+    background-color: #e3adad; /* Change la couleur de fond ici */
 }

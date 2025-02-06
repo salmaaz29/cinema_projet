@@ -1,32 +1,275 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
-    <h1>Les Actualités</h1>
-<div class=" d-flex">
-    <div id="carouselExample" class="carousel slide " data-bs-ride="carousel">
-        <div class="carousel-inner">
-            {% for film in films %}
-                <div class="carousel-item {% if loop.first %}active{% endif %}">
-                    <img src="{{ asset(film.afficheUrl) }}" class="d-block w-100 img-fluid" style="max-height: 200px; max-width: 300px;" alt="{{ film.titre }}">
-                </div>
-            {% endfor %}
-        </div>
-        <!-- Boutons de navigation -->
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Précédent</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Suivant</span>
-        </button>
-    </div>
-</div>
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        /* Styles pour le carrousel */
+        .carousel-item {
+            transition: opacity 1s ease-in-out;
+        }
 
-    <!-- Espace entre le carrousel et le footer -->
-    <div class="mt-5"></div> <!-- Ajoute un espace supplémentaire avant le footer -->
+        .carousel-inner {
+            overflow: hidden;
+            max-height: 500px;
+            position: relative;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
 
-    {% include "__partials/_footer.html.twig" %}
+        .carousel-item img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+        }
+
+        @media (max-width: 768px) {
+            .carousel-item img {
+                height: 300px;
+            }
+        }
+
+        .carousel-control-prev,
+        .carousel-control-next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 50%;
+            color: white;
+            z-index: 10;
+            transition: background-color 0.3s ease;
+        }
+
+        .carousel-control-prev {
+            left: 15px;
+        }
+
+        .carousel-control-next {
+            right: 15px;
+        }
+
+        .carousel-control-prev:hover,
+        .carousel-control-next:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .carousel-control-prev i,
+        .carousel-control-next i {
+            font-size: 1.5rem;
+        }
+
+        /* Styles pour le titre et le sous-titre */
+        h1 {
+            text-align: center;
+            color: #333;
+            font-size: 2.5rem;
+            margin-top: 20px;
+            font-family: 'Arial', sans-serif;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .cinema {
+            text-align: center;
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: #555;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .cinema span {
+            font-weight: bold;
+            color: #ff5722;
+        }
+
+        /* Styles pour la note */
+        .alert-info {
+            background-color: #e9f7fe;
+            color: #31708f;
+            border: 1px solid #bce8f1;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 800px;
+            text-align: center;
+            font-size: 1.2rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .alert-info strong {
+            color: #31708f;
+            font-weight: bold;
+        }
+
+        .alert-info::before {
+            content: "✨";
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            font-size: 2rem;
+            color: #ff5722;
+            opacity: 0.3;
+            animation: float 3s infinite ease-in-out;
+        }
+
+        .alert-info::after {
+            content: "✨";
+            position: absolute;
+            bottom: -10px;
+            right: -10px;
+            font-size: 2rem;
+            color: #ff5722;
+            opacity: 0.3;
+            animation: float 3s infinite ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        /* Styles pour le footer */
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 40px 0;
+            margin-top: 50px;
+        }
+
+        footer h5 {
+            color: #ff5722;
+            margin-bottom: 20px;
+            font-family: 'Arial', sans-serif;
+        }
+
+        footer p {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: #ddd;
+        }
+
+        footer a {
+            color: #ff5722;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: #ff8a65;
+        }
+
+        footer .bi {
+            font-size: 1.2rem;
+            margin-right: 10px;
+        }
+
+        footer .text-center {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+    </style>
 {% endblock %}
 
+{% block body %}
+    <h1>Les Actualités</h1>
+    <div class="cinema">
+        Votre cinéma <span>CINEVERSE</span>
+    </div>
 
+    <!-- Note importante -->
+    <div class="alert alert-info text-center">
+        <strong>Note :</strong> Créez votre compte pour acheter des tickets et profiter des promotions exclusives !
+    </div>
+
+    <div class="container">
+        <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                {% for actualite in actualites %}
+                    <div class="carousel-item {% if loop.first %}active{% endif %}">
+                        <img src="{{ asset(actualite.imageUrl) }}" class="d-block w-100" alt="{{ actualite.titre }}">
+                    </div>
+                {% endfor %}
+            </div>
+
+            <!-- Boutons de navigation -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                <i class="bi bi-arrow-left-circle"></i>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                <i class="bi bi-arrow-right-circle"></i>
+            </button>
+        </div>
+    </div>
+
+    <footer class="bg-dark text-white py-4 mt-5">
+        <div class="container">
+            <div class="row">
+                <!-- Section à propos -->
+                <div class="col-md-4">
+                    <h5>À propos de CINEVERSE</h5>
+                    <p>
+                        Bienvenue chez CINEVERSE, votre destination pour vivre une expérience cinématographique inoubliable.
+                        Découvrez les dernières sorties, réservez vos billets en ligne et profitez d'un confort exceptionnel.
+                    </p>
+                </div>
+
+                <!-- Section liens rapides -->
+                <div class="col-md-4">
+                    <h5>Liens rapides</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white text-decoration-none">Accueil</a></li>
+                        <li><a href="{{ path('app_horaire') }}" class="text-white text-decoration-none">Films en salle</a></li>
+                        <li><a href="{{ path('app_espace_choix') }}" class="text-white text-decoration-none">Espace</a></li>
+                        <li><a href="{{ path('app_a_propos') }}" class="text-white text-decoration-none">À propos</a></li>
+                    </ul>
+                </div>
+
+                <!-- Section contact -->
+                <div class="col-md-4">
+                    <h5>Contactez-nous</h5>
+                    <p>
+                        <i class="bi bi-geo-alt-fill"></i> 123 Rue du Cinéma, Ville XYZ<br>
+                        <i class="bi bi-telephone-fill"></i> +212 6 1234 5678<br>
+                        <i class="bi bi-envelope-fill"></i> contact@cineverse.com
+                    </p>
+                    <div>
+                        <a href="#" class="text-white me-3"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="text-white me-3"><i class="bi bi-twitter"></i></a>
+                        <a href="#" class="text-white"><i class="bi bi-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="bg-light">
+            <div class="text-center">
+                <p class="mb-0">© 2025 CINEVERSE. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+{% endblock %}

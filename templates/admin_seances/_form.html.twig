@@ -1,0 +1,105 @@
+{% block body %}
+    <style>
+        /* Style CSS intact */
+        .custom-form {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 30px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 10px;
+            color: #34495e;
+            font-size: 0.95em;
+        }
+
+        .form-input,
+        .form-textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #dfe6e9;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            background-color: #f9f9f9;
+            color: #2d3436;
+        }
+
+        .form-input:focus,
+        .form-textarea:focus {
+            border-color: #3498db;
+            box-shadow: 0 0 8px rgba(52, 152, 219, 0.2);
+            outline: none;
+            background-color: #ffffff;
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .btn-save {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            background-color: #3498db;
+            color: #ffffff;
+            font-size: 0.95em;
+        }
+
+        .btn-save:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        .form-group input[type="file"] {
+            padding: 8px;
+            background-color: #ffffff;
+            border: 1px solid #dfe6e9;
+            border-radius: 8px;
+            width: 100%;
+        }
+
+        .form-error {
+            color: #e74c3c;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+    </style>
+
+    <div class="custom-form">
+        {{ form_start(form) }}
+            <div class="form-group">
+                {{ form_label(form.places_disponibles, 'Places disponibles', {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(form.places_disponibles, {'attr': {'class': 'form-input'}}) }}
+            </div>
+            <div class="form-group">
+                {{ form_label(form.date_heure, 'Date et Heure', {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(form.date_heure, {'attr': {'class': 'form-input'}}) }}
+            </div>
+            <div class="form-group">
+                {{ form_label(form.prix, 'Prix', {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(form.prix, {'attr': {'class': 'form-input'}}) }}
+            </div>
+            <div class="form-group">
+                {{ form_label(form.film, 'Film', {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(form.film, {'attr': {'class': 'form-input'}}) }}
+            </div>
+            <button class="btn-save">{{ button_label|default('Enregistrer') }}</button>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

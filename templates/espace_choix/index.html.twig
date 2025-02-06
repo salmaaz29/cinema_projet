@@ -1,0 +1,119 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Choix de l'Espace - CinéVerse{% endblock %}
+
+{% block stylesheet %}
+    <style>
+        /* Police moderne */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            max-width: 600px;
+            width: 100%;
+            animation: fadeIn 1s ease-in-out;
+        }
+        .lead {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: #e0e0e0;
+        }
+
+        .form-container {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .select-space {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            font-size: 1rem;
+            margin-bottom: 20px;
+            transition: border-color 0.3s ease, background 0.3s ease;
+        }
+
+        .select-space:focus {
+            border-color: #fff;
+            background: rgba(255, 255, 255, 0.2);
+            outline: none;
+        }
+
+        .select-space option {
+            background: #6a11cb;
+            color: #fff;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            border: none;
+            border-radius: 10px;
+            padding: 12px;
+            font-size: 1rem;
+            font-weight: 500;
+            color: #fff;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Animation d'apparition */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <p class="lead">Veuillez choisir votre espace :</p>
+
+    <div class="form-container">
+        <form method="get" action="{{ path('app_login') }}">
+            <!-- Sélecteur pour choisir l'espace -->
+            <select name="space" class="select-space" required>
+                <option value="" disabled selected>Choisissez votre espace</option>
+                <option value="admin">Espace Administrateur</option>
+                <option value="user">Espace Utilisateur</option>
+            </select>
+
+            <!-- Bouton pour soumettre le choix -->
+            <button type="submit" class="btn btn-primary w-100">Choisir</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

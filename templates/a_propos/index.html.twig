@@ -1,4 +1,48 @@
 {% extends 'base.html.twig' %}
+{% block stylesheets %}
+<style>
+/* Styles pour le footer */
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 40px 0;
+            margin-top: 50px;
+        }
+
+        footer h5 {
+            color: #ff5722;
+            margin-bottom: 20px;
+            font-family: 'Arial', sans-serif;
+        }
+
+        footer p {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: #ddd;
+        }
+
+        footer a {
+            color: #ff5722;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: #ff8a65;
+        }
+
+        footer .bi {
+            font-size: 1.2rem;
+            margin-right: 10px;
+        }
+
+        footer .text-center {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+</style>
+{% endblock %}
 
 {% block body %}
 <div class="container mt-5">
@@ -26,5 +70,49 @@
         <a href="#" class="btn btn-primary">Page de contact</a>
     </section>
 </div>
-  {% include "__partials/_footer.html.twig" %}
+ <footer class="bg-dark text-white py-4 mt-5">
+        <div class="container">
+            <div class="row">
+                <!-- Section à propos -->
+                <div class="col-md-4">
+                    <h5>À propos de CINEVERSE</h5>
+                    <p>
+                        Bienvenue chez CINEVERSE, votre destination pour vivre une expérience cinématographique inoubliable.
+                        Découvrez les dernières sorties, réservez vos billets en ligne et profitez d'un confort exceptionnel.
+                    </p>
+                </div>
+
+                <!-- Section liens rapides -->
+                <div class="col-md-4">
+                    <h5>Liens rapides</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white text-decoration-none">Accueil</a></li>
+                        <li><a href="{{ path('app_horaire') }}" class="text-white text-decoration-none">Films en salle</a></li>
+                        <li><a href="{{ path('app_espace_choix') }}" class="text-white text-decoration-none">Espace</a></li>
+                        <li><a href="{{ path('app_a_propos') }}" class="text-white text-decoration-none">À propos</a></li>
+                    </ul>
+                </div>
+
+                <!-- Section contact -->
+                <div class="col-md-4">
+                    <h5>Contactez-nous</h5>
+                    <p>
+                        <i class="bi bi-geo-alt-fill"></i> 123 Rue du Cinéma, Ville XYZ<br>
+                        <i class="bi bi-telephone-fill"></i> +212 6 1234 5678<br>
+                        <i class="bi bi-envelope-fill"></i> contact@cineverse.com
+                    </p>
+                    <div>
+                        <a href="#" class="text-white me-3"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="text-white me-3"><i class="bi bi-twitter"></i></a>
+                        <a href="#" class="text-white"><i class="bi bi-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="bg-light">
+            <div class="text-center">
+                <p class="mb-0">© 2025 CINEVERSE. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
 {% endblock %}

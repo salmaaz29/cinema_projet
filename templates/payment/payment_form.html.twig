@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paiement</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Roboto', sans-serif;
+        }
+        .container {
+            max-width: 700px;
+            margin: auto;
+            margin-top: 50px;
+        }
+        h2 {
+            font-weight: bold;
+            color: #2c3e50;
+            animation: fadeIn 1s ease-in-out;
+        }
+        .card {
+            border-radius: 15px;
+            background: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        .btn-success {
+            background: linear-gradient(90deg, #28a745, #218838);
+            border: none;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+        .btn-success:hover {
+            background: linear-gradient(90deg, #218838, #28a745);
+            transform: scale(1.05);
+        }
+        .form-check-input:checked {
+            background-color: #28a745;
+            border-color: #28a745;
+        }
+        input::placeholder {
+            font-style: italic;
+            color: #adb5bd;
+        }
+        input:focus {
+            border-color: #28a745;
+            box-shadow: 0 0 5px rgba(40, 167, 69, 0.5);
+        }
+        .form-check-label a {
+            color: #28a745;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .form-check-label a:hover {
+            color: #218838;
+            text-decoration: underline;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2 class="text-center text-primary mb-4">DÉTAIL DE PAIEMENT</h2>
+
+    <div class="card p-4">
+        <form method="post">
+            <!-- Nom du porteur de la carte -->
+            <div class="mb-3">
+                <label for="nomClient" class="form-label">Nom du porteur de la carte</label>
+                <input type="text" id="nomClient" name="nomClient" class="form-control" required placeholder="Nom du porteur de la carte">
+            </div>
+
+            <!-- Numéro de carte -->
+            <div class="mb-3">
+                <label for="numeroCarte" class="form-label">Numéro de carte de paiement</label>
+                <input type="text" id="numeroCarte" name="numeroCarte" class="form-control" required placeholder="XXXX XXXX XXXX XXXX">
+            </div>
+
+            <div class="row">
+                <!-- Date d'expiration -->
+                <div class="col-md-6 mb-3">
+                    <label for="dateExpiration" class="form-label">Date d'expiration</label>
+                    <input type="text" id="dateExpiration" name="dateExpiration" class="form-control" required placeholder="MM/YYYY">
+                </div>
+
+                <!-- CVV -->
+                <div class="col-md-6 mb-3">
+                    <label for="cvv" class="form-label">Code de vérification</label>
+                    <input type="text" id="cvv" name="cvv" class="form-control" required placeholder="CVV">
+                </div>
+            </div>
+
+            <!-- Conditions générales -->
+            <div class="form-check mb-3">
+                <input class="form-check-input" type="checkbox" id="acceptTerms" required>
+                <label class="form-check-label" for="acceptTerms">
+                    J'accepte les <a href="#" class="text-decoration-underline">conditions générales</a>.
+                </label>
+            </div>
+
+            <!-- Bouton de soumission -->
+            <button type="submit" class="btn btn-success w-100">Valider le paiement</button>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

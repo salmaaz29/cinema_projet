@@ -22,6 +22,9 @@ class Tickets
     #[ORM\JoinColumn(name: 'id_seance', referencedColumnName: 'id_seances', nullable: false)]
     private ?Seances $seance = null;
 
+    #[ORM\Column(type: 'boolean')]
+    private bool $isPaid = false; // Ajout du champ
+
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $date_achat = null;
 
@@ -54,6 +57,16 @@ class Tickets
     {
         $this->seance = $seance;
 
+        return $this;
+    }
+    public function getIsPaid(): bool
+    {
+        return $this->isPaid;
+    }
+
+    public function setIsPaid(bool $isPaid): static
+    {
+        $this->isPaid = $isPaid;
         return $this;
     }
 

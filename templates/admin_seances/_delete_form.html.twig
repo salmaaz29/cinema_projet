@@ -1,0 +1,37 @@
+<style>
+    /* Style du formulaire de suppression */
+    .delete-form {
+        display: inline-block; /* Pour s'aligner avec les autres boutons */
+    }
+
+    /* Style du bouton "Delete" */
+    .delete-form .btn-delete {
+        padding: 12px 25px;
+        border: none;
+        border-radius: 8px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+        background-color: #e74c3c;
+        color: #ffffff;
+        font-size: 0.95em;
+    }
+
+    /* Effet au survol du bouton "Delete" */
+    .delete-form .btn-delete:hover {
+        background-color: #c0392b;
+        transform: translateY(-2px);
+    }
+
+    /* Effet au clic du bouton "Delete" */
+    .delete-form .btn-delete:active {
+        transform: translateY(0);
+    }
+</style>
+
+<form method="post" action="{{ path('app_admin_seances_delete', {'id': seance.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');" class="delete-form">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ seance.id) }}">
+    <button class="btn-delete">Delete</button>
+</form>

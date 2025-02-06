@@ -40,4 +40,17 @@ class TicketsRepository extends ServiceEntityRepository
     //            ->getOneOrNullResult()
     //        ;
     //    }
+     // Méthode pour récupérer les films les plus demandés
+     public function findMostRequestedFilms()
+     {
+         return $this->createQueryBuilder('t') // 't' est l'alias de Tickets
+             ->select('f.titre AS titre', 'COUNT(t.id_tickets) AS ticket_count') // Sélectionner le titre du film et compter les tickets
+             ->join('t.seance', 's') // Joindre avec l'entité Seance
+             ->join('s.film', 'f') // Joindre avec l'entité Film
+             ->groupBy('f.id_film') // Grouper par ID du film
+             ->orderBy('ticket_count', 'DESC') // Trier par nombre de tickets vendus
+             ->setMaxResults(5) // Limiter à 5 films les plus demandés
+             ->getQuery()
+             ->getResult();
+     }
 }

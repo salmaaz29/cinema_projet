@@ -1,0 +1,140 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Les Seances{% endblock %}
+
+{% block body %}
+    <style>
+        /* Style général de la page */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Style du tableau */
+        .table {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-collapse: collapse;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+        }
+
+        .table th,
+        .table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .table th {
+            background-color: #3498db;
+            color: #ffffff;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.9em;
+            letter-spacing: 1px;
+        }
+
+        .table tr:hover {
+            background-color: #f9f9f9;
+        }
+
+        .table tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Style des liens */
+        .action-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .action-links a {
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .action-links a.back-link {
+            background-color: #6c757d;
+            color: #ffffff;
+        }
+
+        .action-links a.edit-link {
+            background-color: #3498db;
+            color: #ffffff;
+        }
+
+        .action-links a.delete-link {
+            background-color: #e74c3c;
+            color: #ffffff;
+        }
+
+        .action-links a:hover {
+            transform: translateY(-2px);
+        }
+
+        .action-links a.back-link:hover {
+            background-color: #5a6268;
+        }
+
+        .action-links a.edit-link:hover {
+            background-color: #2980b9;
+        }
+
+        .action-links a.delete-link:hover {
+            background-color: #c0392b;
+        }
+    </style>
+
+    <h1>Détails de l'actualité</h1>
+
+    <table class="table">
+           <tbody>
+            <tr>
+                <th>Id_seances</th>
+                <td>{{ seance.id }}</td>
+            </tr>
+            <tr>
+                <th>Places_disponibles</th>
+                <td>{{ seance.placesDisponibles }}</td>
+            </tr>
+            <tr>
+                <th>Date_heure</th>
+                <td>{{ seance.dateHeure ? seance.dateHeure|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Prix</th>
+                <td>{{ seance.prix }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="action-links">
+        <a href="{{ path('app_admin_seances_index') }}" class="back-link">Retour à la liste</a>
+        <a href="{{ path('app_admin_seances_edit', {'id': seance.id}) }}" class="edit-link">Modifier</a>
+        {{ include('admin_seances/_delete_form.html.twig') }}
+    </div>
+{% endblock %}

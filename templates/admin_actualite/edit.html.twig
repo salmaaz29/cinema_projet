@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Actualite{% endblock %}
+
+{% block body %}
+    <style>
+        /* Style général de la page */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Style du formulaire */
+        .custom-form {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 30px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Style des liens */
+        .action-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .action-links a {
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .action-links a.back-link {
+            background-color: #6c757d;
+            color: #ffffff;
+        }
+
+        .action-links a.back-link:hover {
+            background-color: #5a6268;
+            transform: translateY(-2px);
+        }
+
+       
+    </style>
+
+    <h1>Modifier l'actualité</h1>
+
+    <div class="custom-form">
+        {{ include('admin_actualite/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
+    </div>
+
+    <div class="action-links">
+        <a href="{{ path('app_admin_actualite_index') }}" class="back-link">Retour à la liste</a>
+   
+    </div>
+{% endblock %}

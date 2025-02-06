@@ -7,6 +7,16 @@
     <h1 class="text-center">Réservation Confirmée</h1>
     <p class="text-center">Votre réservation pour le film "{{ seance.film.titre }}" a été confirmée.</p>
     <p class="text-center">Nous vous attendons le {{ seance.dateHeure|date('d/m/Y H:i') }}.</p>
-    <a href="{{ path('app_pre_controller') }}" class="btn btn-primary btn-block">Retour à l'accueil</a>
+
+    <!-- Bouton pour payer le ticket -->
+    <div class="text-center mt-4">
+        <form action="{{ path('payment', { 'id': seance.id }) }}" method="POST">
+            <button type="submit" class="btn btn-success btn-lg">Payer Maintenant</button>
+        </form>
+    </div>
+
+    <div class="text-center mt-3">
+        <a href="{{ path('app_pre_controller') }}" class="btn btn-primary">Retour à l'accueil</a>
+    </div>
 </div>
 {% endblock %}
