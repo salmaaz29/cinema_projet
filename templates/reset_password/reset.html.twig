@@ -1,12 +1,116 @@
-{% extends 'base.html.twig' %}
 
-{% block title %}Reset your password{% endblock %}
+{% block stylesheets %}
+    <style>
+        /* Police moderne */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(-45deg, #6a11cb, #2575fc, #6a11cb, #2575fc);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        form {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            max-width: 400px;
+            width: 100%;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #fff;
+            text-align: center;
+            text-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        label {
+            font-size: 1rem;
+            font-weight: 500;
+            color: #e0e0e0;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            font-size: 1rem;
+            margin-bottom: 20px;
+            transition: border-color 0.3s ease, background 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: #fff;
+            background: rgba(255, 255, 255, 0.2);
+            outline: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            border: none;
+            border-radius: 10px;
+            padding: 12px;
+            font-size: 1rem;
+            font-weight: 500;
+            color: #fff;
+            cursor: pointer;
+            width: 100%;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Animation d'apparition */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+{% endblock %}
 
 {% block body %}
-    <h1>Reset your password</h1>
+    <form method="post">
+        <h1>Reset your password</h1>
 
-    {{ form_start(resetForm) }}
-        {{ form_row(resetForm.plainPassword) }}
-        <button class="btn btn-primary">Reset password</button>
-    {{ form_end(resetForm) }}
+        {{ form_start(resetForm) }}
+            {{ form_row(resetForm.plainPassword, {
+                label: 'New Password',
+                attr: {
+                    class: 'form-control',
+                    placeholder: 'Enter your new password'
+                }
+            }) }}
+
+            <button class="btn btn-primary">Reset password</button>
+        {{ form_end(resetForm) }}
+    </form>
 {% endblock %}

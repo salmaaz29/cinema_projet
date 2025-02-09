@@ -99,6 +99,10 @@
                 {{ form_label(form.film, 'Film', {'label_attr': {'class': 'form-label'}}) }}
                 {{ form_widget(form.film, {'attr': {'class': 'form-input'}}) }}
             </div>
+             <div class="form-group">
+                {{ form_label(form.salle, 'salle', {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(form.salle, {'attr': {'class': 'form-input'}}) }}
+            </div>
             <button class="btn-save">{{ button_label|default('Enregistrer') }}</button>
         {{ form_end(form) }}
     </div>

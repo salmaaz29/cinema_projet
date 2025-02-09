@@ -3,6 +3,27 @@
 {% block stylesheets %}
     {{ parent() }}
     <style>
+        /* Arrière-plan animé */
+        body {
+            background: linear-gradient(-45deg,rgb(205, 205, 228),rgb(132, 95, 95),rgb(191, 190, 192),rgb(185, 162, 132));
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            font-family: 'Poppins', sans-serif;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
         /* Styles pour le carrousel */
         .carousel-item {
             transition: opacity 1s ease-in-out;
@@ -10,17 +31,18 @@
 
         .carousel-inner {
             overflow: hidden;
-            max-height: 500px;
+            height: 100vh;
             position: relative;
             border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
         }
 
-        .carousel-item img {
-            width: 100%;
-            height: 500px;
-            object-fit: cover;
-        }
+    .carousel-item img {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+    border-radius: 15px;
+}
 
         @media (max-width: 768px) {
             .carousel-item img {
@@ -38,11 +60,11 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background-color: rgba(0, 0, 0, 0.5);
+            background-color: rgba(255, 255, 255, 0.3);
             border-radius: 50%;
-            color: white;
+            color: #fff;
             z-index: 10;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s ease, transform 0.3s ease;
         }
 
         .carousel-control-prev {
@@ -55,7 +77,8 @@
 
         .carousel-control-prev:hover,
         .carousel-control-next:hover {
-            background-color: rgba(0, 0, 0, 0.8);
+            background-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-50%) scale(1.1);
         }
 
         .carousel-control-prev i,
@@ -66,19 +89,21 @@
         /* Styles pour le titre et le sous-titre */
         h1 {
             text-align: center;
-            color: #333;
-            font-size: 2.5rem;
-            margin-top: 20px;
-            font-family: 'Arial', sans-serif;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            color: #fff;
+            font-size: 3rem;
+            margin-top: 40px;
+            font-family: 'Poppins', sans-serif;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 1s ease-in-out;
         }
 
         .cinema {
             text-align: center;
-            font-size: 1.2rem;
+            font-size: 1.5rem;
             margin-bottom: 30px;
-            color: #555;
-            font-family: 'Arial', sans-serif;
+            color: #e0e0e0;
+            font-family: 'Poppins', sans-serif;
+            animation: fadeIn 1.5s ease-in-out;
         }
 
         .cinema span {
@@ -88,83 +113,72 @@
 
         /* Styles pour la note */
         .alert-info {
-            background-color: #e9f7fe;
-            color: #31708f;
-            border: 1px solid #bce8f1;
-            border-radius: 12px;
-            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 30px;
             margin: 20px auto;
             max-width: 800px;
             text-align: center;
             font-size: 1.2rem;
             position: relative;
             overflow: hidden;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            animation: fadeIn 1s ease-in-out;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            animation: fadeIn 2s ease-in-out;
         }
 
         .alert-info strong {
-            color: #31708f;
+            color: #ff5722;
             font-weight: bold;
         }
 
-        .alert-info::before {
-            content: "✨";
-            position: absolute;
-            top: -10px;
-            left: -10px;
-            font-size: 2rem;
-            color: #ff5722;
-            opacity: 0.3;
-            animation: float 3s infinite ease-in-out;
-        }
-
+        .alert-info::before,
         .alert-info::after {
             content: "✨";
             position: absolute;
-            bottom: -10px;
-            right: -10px;
             font-size: 2rem;
             color: #ff5722;
             opacity: 0.3;
             animation: float 3s infinite ease-in-out;
         }
 
+        .alert-info::before {
+            top: -10px;
+            left: -10px;
+        }
+
+        .alert-info::after {
+            bottom: -10px;
+            right: -10px;
+        }
+
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         @keyframes float {
-            0% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
-            100% {
-                transform: translateY(0);
-            }
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0); }
         }
 
         /* Styles pour le footer */
         footer {
-            background-color: #333;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
             color: white;
             padding: 40px 0;
             margin-top: 50px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         footer h5 {
             color: #ff5722;
             margin-bottom: 20px;
-            font-family: 'Arial', sans-serif;
+            font-family: 'Poppins', sans-serif;
         }
 
         footer p {
@@ -207,12 +221,12 @@
         <strong>Note :</strong> Créez votre compte pour acheter des tickets et profiter des promotions exclusives !
     </div>
 
-    <div class="container">
+    <div style="width: 95%;margin: 0 auto;">
         <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
                 {% for actualite in actualites %}
                     <div class="carousel-item {% if loop.first %}active{% endif %}">
-                        <img src="{{ asset(actualite.imageUrl) }}" class="d-block w-100" alt="{{ actualite.titre }}">
+                        <img src="{{ asset(actualite.imageUrl) }}" class="d-block w-100 img-fluid" alt="{{ actualite.titre }}" style="object-fit: contain; height: 100%;">
                     </div>
                 {% endfor %}
             </div>

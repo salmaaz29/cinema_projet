@@ -121,6 +121,7 @@
                 <th>Id_seances</th>
                 <th>Places_disponibles</th>
                 <th>Date_heure</th>
+                <th>Salle</th>
                 <th>Prix</th>
                 <th>actions</th>
             </tr>
@@ -131,6 +132,7 @@
                 <td>{{ seance.id }}</td>
                 <td>{{ seance.placesDisponibles }}</td>
                 <td>{{ seance.dateHeure ? seance.dateHeure|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ seance.salle }}</td>
                 <td>{{ seance.prix }}</td>
                 <td>
                     <a href="{{ path('app_admin_seances_show', {'id': seance.id}) }}">Voir</a>

@@ -1,37 +1,210 @@
-{% extends 'base.html.twig' %}
+{% block stylesheets %}
+<style>
+/* Style général */
+body {
+    background: linear-gradient(135deg,rgb(160, 145, 176),rgb(167, 183, 209));
+    background-size: 200% 200%;
+    animation: gradientBG 10s ease infinite;
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
 
-{% block title %}Inscription{% endblock %}
+@keyframes gradientBG {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.container {
+    margin-top: 5rem;
+}
+
+.card {
+    border: none;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(10px);
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+}
+
+.card-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #333;
+    text-align: center;
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.card-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: #007bff;
+    margin: 10px auto 0;
+    border-radius: 2px;
+}
+
+.card-body {
+    padding: 2.5rem;
+}
+
+.form-label {
+    font-weight: 600;
+    color: #555;
+    margin-bottom: 0.5rem;
+}
+
+.form-control {
+    border-radius: 10px;
+    padding: 0.75rem 1rem;
+    border: 1px solid #ddd;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    background: rgba(255, 255, 255, 0.8);
+}
+
+.form-control:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+    background: rgba(255, 255, 255, 1);
+}
+
+.invalid-feedback {
+    font-size: 0.875rem;
+    color: #dc3545;
+    margin-top: 0.25rem;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    border: none;
+    border-radius: 10px;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: white;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 100%;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
+    background: linear-gradient(135deg, #2575fc, #6a11cb);
+}
+
+/* Style pour la case à cocher RGPD */
+.form-check-input {
+    margin-top: 0.25rem;
+}
+
+.form-check-label {
+    font-size: 0.875rem;
+    color: #666;
+}
+
+/* Effet de survol sur les champs */
+.form-control:hover {
+    border-color: #007bff;
+}
+
+/* Animation au chargement du formulaire */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.card {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Effet de transition sur les messages d'erreur */
+.invalid-feedback {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.form-control:invalid + .invalid-feedback {
+    opacity: 1;
+}
+</style>
+{% endblock %}
 
 {% block body %}
-    <section class="container">
-        <div class="row">
-          <div class="col-md-6">
-                <h1>Formulaire d'inscription</h1>
-      
-            {{ form_start(registrationForm) }}
-                  {{ form_errors(registrationForm) }}
-            <fieldset class="mb-3">
-                <legend>Informations personnelles</legend>
+    <section class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6">
+                <div class="card shadow">
+                    <div class="card-body p-4">
+                        <h1 class="card-title text-center mb-4">Formulaire d'inscription</h1>
 
-                    {{ form_row(registrationForm.email ) }}
-            </fieldset>
-               <fieldset class="mb-3">
-    
-                  {{ form_row(registrationForm.plainPassword) }}
-                </fieldset>
+                        {{ form_start(registrationForm, {'attr': {'class': 'needs-validation', 'novalidate': 'novalidate'}}) }}
+                            {{ form_errors(registrationForm) }}
 
-               <fieldset class="mb-3">
-                    {{ form_row(registrationForm.nom_prenom) }}
-                
-            </fieldset>
-                
-                {{ form_row(registrationForm.RGPDConsent) }}
+                            <fieldset class="mb-4">
+                                <legend class="h5 mb-3">Informations personnelles</legend>
 
-                <button type="submit" class="btn btn-primary btn-lg my-3">M'inscrire</button>
-            {{ form_end(registrationForm) }}
-           
+                                <div class="mb-3">
+                                    {{ form_label(registrationForm.email, 'Email', {'label_attr': {'class': 'form-label'}}) }}
+                                    {{ form_widget(registrationForm.email, {'attr': {'class': 'form-control'}}) }}
+                                    <div class="invalid-feedback">
+                                        Veuillez entrer une adresse email valide.
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    {{ form_label(registrationForm.plainPassword, 'Mot de passe', {'label_attr': {'class': 'form-label'}}) }}
+                                    {{ form_widget(registrationForm.plainPassword, {'attr': {'class': 'form-control'}}) }}
+                                    <div class="invalid-feedback">
+                                        Veuillez entrer un mot de passe valide.
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    {{ form_label(registrationForm.nom_prenom, 'Nom et Prénom', {'label_attr': {'class': 'form-label'}}) }}
+                                    {{ form_widget(registrationForm.nom_prenom, {'attr': {'class': 'form-control'}}) }}
+                                    <div class="invalid-feedback">
+                                        Veuillez entrer votre nom et prénom.
+                                    </div>
+                                </div>
+                            </fieldset>
+
+                            <div class="mb-4">
+                                {{ form_row(registrationForm.RGPDConsent, {'label_attr': {'class': 'form-check-label'}, 'attr': {'class': 'form-check-input'}}) }}
+                            </div>
+
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-primary btn-lg">M'inscrire</button>
+                            </div>
+                        {{ form_end(registrationForm) }}
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
-    </section
-
+    </section>
 {% endblock %}

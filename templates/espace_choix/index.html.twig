@@ -1,6 +1,3 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}Choix de l'Espace - CinéVerse{% endblock %}
 
 {% block stylesheet %}
     <style>
@@ -9,7 +6,9 @@
 
         body {
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            background: linear-gradient(-45deg,rgb(149, 149, 150),rgb(132, 95, 95),rgb(191, 190, 192),rgb(185, 162, 132));
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
             color: #fff;
             min-height: 100vh;
             display: flex;
@@ -17,6 +16,12 @@
             justify-content: center;
             margin: 0;
             padding: 0;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         .container {
@@ -31,10 +36,20 @@
             width: 100%;
             animation: fadeIn 1s ease-in-out;
         }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #fff;
+            text-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
         .lead {
             font-size: 1.2rem;
             margin-bottom: 30px;
             color: #e0e0e0;
+            animation: fadeIn 1.5s ease-in-out;
         }
 
         .form-container {
@@ -42,6 +57,7 @@
             border-radius: 15px;
             padding: 20px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            animation: slideIn 1s ease-in-out;
         }
 
         .select-space {
@@ -63,12 +79,12 @@
         }
 
         .select-space option {
-            background: #6a11cb;
+            background:rgb(200, 170, 163);
             color: #fff;
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            background: linear-gradient(135deg, #6a11cb,rgb(254, 254, 254));
             border: none;
             border-radius: 10px;
             padding: 12px;
@@ -86,20 +102,20 @@
 
         /* Animation d'apparition */
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
         }
     </style>
 {% endblock %}
 
 {% block body %}
 <div class="container mt-5">
+    <h1>Bienvenue sur CinéVerse</h1>
     <p class="lead">Veuillez choisir votre espace :</p>
 
     <div class="form-container">

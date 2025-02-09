@@ -19,6 +19,9 @@ class Seances
     #[ORM\Column]
     private ?int $places_disponibles = null;
 
+    #[ORM\Column]
+    private ?string $salle = null;
+
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $date_heure = null;
 
@@ -77,6 +80,19 @@ class Seances
     public function setPrix(string $prix): static
     {
         $this->prix = $prix;
+
+        return $this;
+    }
+
+
+    public function getSalle(): ?string
+    {
+        return $this->salle;
+    }
+
+    public function setSalle(string $salle): self
+    {
+        $this->prix = $salle;
 
         return $this;
     }

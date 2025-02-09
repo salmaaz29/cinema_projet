@@ -40,4 +40,14 @@ class FilmsRepository extends ServiceEntityRepository
     //            ->getOneOrNullResult()
     //        ;
     //    }
+    // Recherche des films par titre
+   
+   public function findByTitre(string $search): array
+   {
+       return $this->createQueryBuilder('f')
+           ->andWhere('f.titre LIKE :search')
+           ->setParameter('search', '%' . $search . '%')
+           ->getQuery()
+           ->getResult();
+   }
 }
