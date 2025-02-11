@@ -7,7 +7,7 @@
 
         body {
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(-45deg, #6a11cb, #2575fc, #6a11cb, #2575fc);
+            background: linear-gradient(-45deg,rgb(122, 120, 125),rgb(243, 207, 185),rgb(161, 138, 186),rgb(196, 202, 213));
             background-size: 400% 400%;
             animation: gradientBG 15s ease infinite;
             color: #fff;
@@ -74,11 +74,11 @@
 
 {% block body %}
     <div class="confirmation-container">
-        <h1>Password Reset Email Sent</h1>
+        <h1>Réinitialisation du mot de passe e-mail envoyé</h1>
         <p>
-            If an account matching your email exists, then an email was just sent that contains a link that you can use to reset your password.
-            This link will expire in {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.
+           S’il existe un compte correspondant à votre adresse e-mail, cela signifie qu’un e-mail contenant un lien vous permet de réinitialiser votre mot de passe.
+      Ce lien expirera dans{{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.
         </p>
-        <p>If you don't receive an email, please check your spam folder or <a href="{{ path('app_forgot_password_request') }}">try again</a>.</p>
+        <p>Si vous ne recevez pas d’e-mail, veuillez vérifier votre dossier spam ou <a href="{{ path('app_forgot_password_request') }}">Réessayez</a>.</p>
     </div>
 {% endblock %}

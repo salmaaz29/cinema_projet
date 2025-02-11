@@ -99,18 +99,18 @@
 
 {% block body %}
     <form method="post">
-        <h1>Reset your password</h1>
+        <h1>Réinitialiser votre mot de passe</h1>
 
         {{ form_start(resetForm) }}
             {{ form_row(resetForm.plainPassword, {
-                label: 'New Password',
+                label: 'Nouveau mot de passe',
                 attr: {
                     class: 'form-control',
-                    placeholder: 'Enter your new password'
+                    placeholder: 'Entrer votre Nouveau Mot de Passe'
                 }
             }) }}
 
-            <button class="btn btn-primary">Reset password</button>
+            <button class="btn btn-primary">Réinitialiser votre mot de passe</button>
         {{ form_end(resetForm) }}
     </form>
 {% endblock %}
