@@ -100,7 +100,7 @@
             {{ form_label(form.contenu, 'Contenu', {'label_attr': {'class': 'form-label'}}) }}
             {{ form_widget(form.contenu, {'attr': {'class': 'form-textarea'}}) }}
         </div>
-        {% if form.imageUrl is defined %} {# Vérifiez si le champ existe #}
+        {% if form.imageUrl is defined %} 
             <div class="form-group">
                 {{ form_label(form.imageUrl, 'URL de l\'image', {'label_attr': {'class': 'form-label'}}) }}
                 {{ form_widget(form.imageUrl, {'attr': {'class': 'form-input'}}) }}

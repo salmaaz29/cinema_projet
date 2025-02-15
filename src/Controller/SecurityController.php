@@ -13,6 +13,7 @@ class SecurityController extends AbstractController
     #[Route(path: '/login', name: 'app_login')]
 public function login(Request $request, AuthenticationUtils $authenticationUtils): Response
 {
+    //AuthenticationUtils  pour récupérer l'erreur de connexion et le dernier nom d'utilisateur saisi
     // Récupère l'espace choisi via un paramètre de requête
     $space = $request->query->get('space');
 

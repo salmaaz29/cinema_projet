@@ -30,8 +30,7 @@ final class PaymentController extends AbstractController
 
         // Afficher le formulaire de paiement
         if ($request->isMethod('POST')) {
-            // Simuler le processus de paiement ici (valider les informations de paiement)
-            // Par exemple : validation d'une carte de crédit
+    
             $isPaymentSuccessful = true; // Cette variable doit être définie selon la réponse du service de paiement réel
 
             if ($isPaymentSuccessful) {
